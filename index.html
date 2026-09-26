@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beatriz Fernandes Treino</title>
+  <link rel="stylesheet" href="styler.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="logo">
+      <span>BF</span>
+      <div>
+        <h1>Beatriz Fernandes</h1>
+        <p>Treino & Evolução</p>
+      </div>
+    </div>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <nav id="menu">
+      <a href="#inicio">Início</a>
+      <a href="#cronograma">Cronograma</a>
+      <a href="#treinos">Treinos</a>
+      <a href="#corpo">Meu Corpo</a>
+      <a href="#dieta">Alimentação</a>
+      <a href="#fitness">Fitness</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="hero-text">
+        <span class="tag">PROJETO FITNESS</span>
+        <h2>Seu treino.<br>Sua evolução.</h2>
+        <p>Organize seus treinos, acompanhe suas medidas, controle seu IMC e mantenha sua rotina fitness em um só lugar.</p>
+        <a href="#cronograma" class="botao">Ver meu cronograma</a>
+      </div>
+
+      <div class="hero-card">
+        <div class="status"><span class="bolinha"></span>TREINO DE HOJE</div>
+        <h3 id="treinoHoje">Peito + Tríceps</h3>
+        <p>45 - 60 minutos</p>
+        <div class="progresso">
+          <div class="barra"><div id="barraProgresso"></div></div>
+          <span id="porcentagem">0%</span>
+        </div>
+        <button onclick="concluirTreino()" class="botao pequeno">Concluir treino</button>
+      </div>
+    </section>
+
+    <section class="resumo">
+      <div class="resumo-card"><span>🔥</span><strong id="diasTreino">0</strong><p>Treinos concluídos</p></div>
+      <div class="resumo-card"><span>⚖️</span><strong id="pesoResumo">--</strong><p>Peso atual</p></div>
+      <div class="resumo-card"><span>📏</span><strong id="imcResumo">--</strong><p>IMC</p></div>
+      <div class="resumo-card"><span>🎯</span><strong>Hipertrofia</strong><p>Objetivo atual</p></div>
+    </section>
+
+    <section id="cronograma" class="secao">
+      <div class="titulo">
+        <span>ROTINA</span>
+        <h2>Cronograma semanal</h2>
+        <p>Organize sua semana de treino e descanso.</p>
+      </div>
+      <div class="semana">
+        <div class="dia ativo"><span>SEG</span><strong>Peito</strong><small>+ Tríceps</small></div>
+        <div class="dia"><span>TER</span><strong>Costas</strong><small>+ Bíceps</small></div>
+        <div class="dia"><span>QUA</span><strong>Pernas</strong><small>Completo</small></div>
+        <div class="dia"><span>QUI</span><strong>Ombros</strong><small>+ Abdômen</small></div>
+        <div class="dia"><span>SEX</span><strong>Glúteos</strong><small>+ Pernas</small></div>
+        <div class="dia descanso"><span>SÁB</span><strong>Cardio</strong><small>Leve</small></div>
+        <div class="dia descanso"><span>DOM</span><strong>Descanso</strong><small>Recuperação</small></div>
+      </div>
+    </section>
+
+    <section id="treinos" class="secao fundo">
+      <div class="titulo">
+        <span>FICHAS</span>
+        <h2>Escolha seu objetivo</h2>
+        <p>Veja sugestões de treino de acordo com seu objetivo.</p>
+      </div>
+
+      <div class="objetivos">
+        <button onclick="mostrarTreino('hipertrofia', this)" class="objetivo ativo">💪 Hipertrofia</button>
+        <button onclick="mostrarTreino('emagrecimento', this)" class="objetivo">🔥 Emagrecimento</button>
+        <button onclick="mostrarTreino('condicionamento', this)" class="objetivo">🏃 Condicionamento</button>
+      </div>
+
+      <div id="fichaTreino" class="ficha"></div>
+    </section>
+
+    <section id="corpo" class="secao">
+      <div class="titulo">
+        <span>ACOMPANHAMENTO</span>
+        <h2>Meu corpo</h2>
+        <p>Registre seus dados e acompanhe sua evolução.</p>
+      </div>
+
+      <div class="corpo-grid">
+        <div class="painel">
+          <h3>Calculadora de IMC</h3>
+          <div class="campo">
+            <label>Peso (kg)</label>
+            <input type="number" id="peso" placeholder="Ex: 65" step="0.1">
+          </div>
+          <div class="campo">
+            <label>Altura (m)</label>
+            <input type="number" id="altura" placeholder="Ex: 1.65" step="0.01">
+          </div>
+          <button onclick="calcularIMC()" class="botao">Calcular IMC</button>
+          <div id="resultadoIMC" class="resultado">
+            <span>Seu IMC</span>
+            <strong>--</strong>
+            <p>Preencha seus dados</p>
+          </div>
+        </div>
+
+        <div class="painel">
+          <h3>Medidas corporais</h3>
+          <p class="descricao">Registre suas medidas para acompanhar sua evolução.</p>
+          <div class="medidas">
+            <div class="campo"><label>Cintura (cm)</label><input id="cintura" type="number"></div>
+            <div class="campo"><label>Quadril (cm)</label><input id="quadril" type="number"></div>
+            <div class="campo"><label>Braço (cm)</label><input id="braco" type="number"></div>
+            <div class="campo"><label>Perna (cm)</label><input id="perna" type="number"></div>
+          </div>
+          <button onclick="salvarMedidas()" class="botao">Salvar medidas</button>
+          <p id="mensagemMedidas" class="mensagem"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="dieta" class="secao fundo">
+      <div class="titulo">
+        <span>NUTRIÇÃO</span>
+        <h2>Alimentação para massa magra</h2>
+        <p>Exemplo de organização alimentar para apoiar o ganho de massa muscular.</p>
+      </div>
+
+      <div class="refeicoes">
+        <div class="refeicao"><span>☀️</span><div><strong>Café da manhã</strong><p>Ovos + aveia + banana + iogurte natural</p></div></div>
+        <div class="refeicao"><span>🍎</span><div><strong>Lanche</strong><p>Fruta + iogurte ou outra fonte de proteína</p></div></div>
+        <div class="refeicao"><span>🍗</span><div><strong>Almoço</strong><p>Arroz + feijão + frango/carne/peixe + legumes e verduras</p></div></div>
+        <div class="refeicao"><span>🥛</span><div><strong>Pré-treino</strong><p>Carboidrato + proteína, conforme sua rotina</p></div></div>
+        <div class="refeicao"><span>💪</span><div><strong>Pós-treino</strong><p>Refeição com proteína + carboidrato</p></div></div>
+        <div class="refeicao"><span>🌙</span><div><strong>Jantar</strong><p>Proteína + carboidrato + vegetais</p></div></div>
+      </div>
+    </section>
+
+    <section id="fitness" class="secao">
+      <div class="titulo">
+        <span>RECURSOS</span>
+        <h2>Sites fitness</h2>
+        <p>Acesse recursos externos para complementar seus estudos.</p>
+      </div>
+
+      <div class="sites">
+        <a href="https://www.tuasaude.com/" target="_blank" rel="noopener" class="site"><span>🩺</span><strong>Tua Saúde</strong><small>Saúde e bem-estar</small></a>
+        <a href="https://www.acefitness.org/" target="_blank" rel="noopener" class="site"><span>🏋️</span><strong>ACE Fitness</strong><small>Exercícios e treinamento</small></a>
+        <a href="https://www.myfitnesspal.com/" target="_blank" rel="noopener" class="site"><span>🥗</span><strong>MyFitnessPal</strong><small>Alimentação e acompanhamento</small></a>
+        <a href="https://www.bodybuilding.com/" target="_blank" rel="noopener" class="site"><span>💪</span><strong>Bodybuilding</strong><small>Treinos e musculação</small></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="logo">
+      <span>BF</span>
+      <div><h3>Beatriz Fernandes Treino</h3><p>Foco • Disciplina • Evolução</p></div>
+    </div>
+    <p>© 2026 Beatriz Fernandes Treino</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
